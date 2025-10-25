@@ -1,0 +1,41 @@
+# Environment variables
+.env
+.env.local
+.env.production
+.env.staging
+
+# Database credentials
+*.env
+config.properties
+
+# Java compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Log files
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# MySQL connector (if downloaded locally)
+mysql-connector-java-*.jar
+
+java-dotenv-5.2.2.java
+mysql-connector-java-8.0.33.jar
