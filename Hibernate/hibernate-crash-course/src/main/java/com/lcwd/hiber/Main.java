@@ -30,8 +30,26 @@ public class Main {
             Student student3 = new Student("Bob Johnson", "bob.johnson@example.com", "Chicago");
             Student student4 = new Student("Alice Williams", "alice.williams@example.com", "Houston");
             
-            // Save students to database
-            System.out.println("Saving students to database...");
+            // Create Certificates for students (demonstrating One-to-Many relationship)
+            Certificate cert1 = new Certificate("Java Programming", "Oracle", "2024-01-15");
+            Certificate cert2 = new Certificate("Spring Framework", "VMware", "2024-02-20");
+            Certificate cert3 = new Certificate("Hibernate ORM", "Red Hat", "2024-03-10");
+            Certificate cert4 = new Certificate("MySQL Database", "Oracle", "2024-01-25");
+            Certificate cert5 = new Certificate("Web Development", "W3C", "2024-02-28");
+            
+            // Associate certificates with students
+            student1.addCertificate(cert1);  // John has Java Programming
+            student1.addCertificate(cert2);  // John has Spring Framework
+            
+            student2.addCertificate(cert3);  // Jane has Hibernate ORM
+            student2.addCertificate(cert4);  // Jane has MySQL Database
+            
+            student3.addCertificate(cert5);  // Bob has Web Development
+            
+            // student4 has no certificates (to show optional relationship)
+            
+            // Save students to database (certificates will be saved automatically due to cascade)
+            System.out.println("Saving students with certificates to database...");
             session.persist(student1);
             session.persist(student2);
             session.persist(student3);
@@ -39,14 +57,24 @@ public class Main {
             
             // Commit transaction
             transaction.commit();
-            System.out.println("Students saved successfully!");
+            System.out.println("Students and certificates saved successfully!");
             
-            // Display saved students
-            System.out.println("\nSaved Students:");
-            System.out.println(student1);
-            System.out.println(student2);
-            System.out.println(student3);
-            System.out.println(student4);
+            // Display saved students with their certificates
+            System.out.println("\n=== Saved Students with Certificates ===");
+            System.out.println("\n" + student1);
+            System.out.println("  Certificates:");
+            student1.getCertificates().forEach(cert -> System.out.println("    - " + cert));
+            
+            System.out.println("\n" + student2);
+            System.out.println("  Certificates:");
+            student2.getCertificates().forEach(cert -> System.out.println("    - " + cert));
+            
+            System.out.println("\n" + student3);
+            System.out.println("  Certificates:");
+            student3.getCertificates().forEach(cert -> System.out.println("    - " + cert));
+            
+            System.out.println("\n" + student4);
+            System.out.println("  Certificates: None");
             
         } catch (Exception e) {
             if (transaction != null) {

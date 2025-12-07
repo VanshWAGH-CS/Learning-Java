@@ -9,7 +9,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate_db?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">324211@Mysql</property>
+        <property name="hibernate.connection.password">password</property>
         
         <!-- JDBC connection pool settings -->
         <property name="hibernate.connection.pool_size">10</property>
@@ -24,8 +24,9 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         
-        <!-- Mapping entity class -->
+        <!-- Mapping entity classes -->
         <mapping class="com.lcwd.hiber.Student"/>
+        <mapping class="com.lcwd.hiber.Certificate"/>
     </session-factory>
 </hibernate-configuration>
 

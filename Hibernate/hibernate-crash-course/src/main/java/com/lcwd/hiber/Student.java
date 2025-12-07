@@ -1,6 +1,8 @@
 package com.lcwd.hiber;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -19,6 +21,10 @@ public class Student {
     
     @Column(name = "city")
     private String city;
+    
+    // One-to-Many relationship: One student can have many certificates
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Certificate> certificates = new ArrayList<>();
     
     // Default constructor (required by Hibernate)
     public Student() {
@@ -64,6 +70,20 @@ public class Student {
         this.city = city;
     }
     
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+    
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+    
+    // Helper method to add certificate
+    public void addCertificate(Certificate certificate) {
+        certificates.add(certificate);
+        certificate.setStudent(this);
+    }
+    
     @Override
     public String toString() {
         return "Student{" +
@@ -71,6 +91,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", city='" + city + '\'' +
+                ", certificates=" + certificates.size() + " certificates" +
                 '}';
     }
 }

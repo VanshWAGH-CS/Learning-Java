@@ -24,8 +24,9 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         
-        <!-- Mapping entity class -->
+        <!-- Mapping entity classes -->
         <mapping class="com.lcwd.hiber.Student"/>
+        <mapping class="com.lcwd.hiber.Certificate"/>
     </session-factory>
 </hibernate-configuration>
 
